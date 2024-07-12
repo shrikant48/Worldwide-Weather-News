@@ -1,126 +1,63 @@
-// 1 Api for weather
-const url6 =
-  "https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=Delhi";
-const options6 = {
-  method: "GET",
-  headers: {
-    "x-rapidapi-key": "c99b257654msha5da4497e4531dap17feb3jsn4d01058b1959",
-    "x-rapidapi-host": "weather-by-api-ninjas.p.rapidapi.com",
-  },
-};
+document.getElementById("searchBtn").addEventListener("click", async () => {
+  const city = document.getElementById("cityInput").value;
+  const url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${city}`;
+  const options = {
+    method: "GET",
+    headers: {
+      "x-rapidapi-key": "c99b257654msha5da4497e4531dap17feb3jsn4d01058b1959",
+      "x-rapidapi-host": "weatherapi-com.p.rapidapi.com",
+    },
+  };
 
-const getweather = (city) => {
-  document.getElementById("cityName").innerHTML = city;
-
-  fetch(
-    "https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=" + city,
-    options6
-  )
-    .then((response) => response.json())
-    .then((response) => {
-      console.log(response);
-
-      document.getElementById("feels_like").innerHTML = response.feels_like;
-      document.getElementById("humidity").innerHTML = response.humidity;
-      document.getElementById("temp").innerHTML = response.temp;
-      document.getElementById("min_temp").innerHTML = response.min_temp;
-      document.getElementById("sunrise").innerHTML = response.sunrise;
-      document.getElementById("max_temp").innerHTML = response.max_temp;
-      document.getElementById("wind_degrees").innerHTML = response.wind_degrees;
-      document.getElementById("wind_speed").innerHTML = response.wind_speed;
-      document.getElementById("sunset").innerHTML = response.sunset;
-    })
-    .catch((err) => console.error(err));
-};
-
-document.getElementById("submit").addEventListener("click", (e) => {
-  e.preventDefault();
-  getweather(document.getElementById("city").value);
+  try {
+    const response = await fetch(url, options);
+    const result = await response.json();
+    displayWeatherInfo(result);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
-// Initial call to display weather for Delhi on page load
-getweather("Delhi");
+function displayWeatherInfo(data) {
+  document.getElementById("locationName").textContent = data.location.name;
+  document.getElementById("locationRegion").textContent = data.location.region;
+  document.getElementById("locationCountry").textContent =
+    data.location.country;
+  document.getElementById("locationLat").textContent = data.location.lat;
+  document.getElementById("locationLon").textContent = data.location.lon;
+  document.getElementById("locationTz").textContent = data.location.tz_id;
+  document.getElementById("locationLocaltime").textContent =
+    data.location.localtime;
 
-
-
-
-
-
-// 2 api for news
-
-const newsData = {
-  articles: [
-    {
-      title: "NASA-Led Study Pinpoints Areas of New York City Sinking, Rising",
-      url: "https://climate.nasa.gov/news/3285/",
-      thumbnail:
-        "https://climate.nasa.gov/internal_resources/2720/Map_of_vertical_land_motion_in_NYC.jpeg/image/large.png",
-      published: "2023-09-27T18:11:45.000Z",
-      source: "Nasa Climate",
-    },
-    {
-      title:
-        "Arctic Sea Ice 6th Lowest on Record; Antarctic Sees Record Low Growth",
-      url: "https://climate.nasa.gov/news/3284/",
-      thumbnail:
-        "https://m.eyeofriyadh.com/news_images/2020/05/22c6626e162b1.jpg",
-      published: "2023-09-26T17:51:44.000Z",
-      source: "Nasa Climate",
-    },
-    {
-      title: "NASA-Built Greenhouse Gas Detector Moves Closer to Launch",
-      url: "https://climate.nasa.gov/news/3281/",
-      thumbnail:
-        "https://climate.nasa.gov/internal_resources/2712/Photo_of_engineers_doing_vibration_testing.jpeg/image/large.png",
-      published: "2023-09-14T15:25:21.000Z",
-      source: "Nasa Climate",
-    },
-    {
-      title: "NASA Announces Summer 2023 Hottest on Record",
-      url: "https://climate.nasa.gov/news/3282/",
-      thumbnail:
-        "https://nasa.gov/sites/default/files/styles/side_image/public/thumbnails/image/globaljjaanoms_gis_2023_chart_lrg.jpg?itok=H8Ez6X-s/image/large.png",
-      published: "2023-09-14T16:23:25.000Z",
-      source: "Nasa Climate",
-    },
-
-    // Add other articles here
-  ],
-  meta: {
-    currentPage: 1,
-    totalPages: 3,
-    totalArticles: 31,
-  },
-};
-
-function displayNews(newsData) {
-  const newsContainer = document.getElementById("news-container");
-  newsData.articles.forEach((news) => {
-    const newsElement = document.createElement("div");
-    newsElement.innerHTML = `
-              <h2>${news.title}</h2>
-              <p>Published by ${news.source} on ${new Date(
-      news.published
-    ).toLocaleDateString()}</p>
-              <img src="${news.thumbnail}" alt="${
-      news.title
-    }" style="max-width: 100%;">
-              <p><a href="${news.url}" target="_blank">Read more</a></p>
-          `;
-    newsContainer.appendChild(newsElement);
-  });
+  document.getElementById("currentLastUpdated").textContent =
+    data.current.last_updated;
+  document.getElementById("currentTempC").textContent = data.current.temp_c;
+  document.getElementById("currentTempF").textContent = data.current.temp_f;
+  document.getElementById("currentCondition").textContent =
+    data.current.condition.text;
+  document.getElementById("currentConditionIcon").src =
+    data.current.condition.icon;
+  document.getElementById("currentWindMph").textContent = data.current.wind_mph;
+  document.getElementById("currentWindKph").textContent = data.current.wind_kph;
+  document.getElementById("currentWindDir").textContent = data.current.wind_dir;
+  document.getElementById("currentPressureMb").textContent =
+    data.current.pressure_mb;
+  document.getElementById("currentPrecipMm").textContent =
+    data.current.precip_mm;
+  document.getElementById("currentHumidity").textContent =
+    data.current.humidity;
+  document.getElementById("currentCloud").textContent = data.current.cloud;
+  document.getElementById("currentFeelsLikeC").textContent =
+    data.current.feelslike_c;
+  document.getElementById("currentFeelsLikeF").textContent =
+    data.current.feelslike_f;
+  document.getElementById("currentVisKm").textContent = data.current.vis_km;
+  document.getElementById("currentUv").textContent = data.current.uv;
 }
-
-// Call the displayNews function when the page loads
-document.addEventListener("DOMContentLoaded", function () {
-  displayNews(newsData);
-});
-
-
 
 // 3 api for planning vaccation
 async function planVacation() {
-  const destinationInput = document.getElementById("city").value.trim();
+  const destinationInput = document.getElementById("cityInput").value.trim();
   const url2 = `https://ai-vacation-planner.p.rapidapi.com/vacationplan/${destinationInput}/4/sightseeing,shopping`;
   const options2 = {
     method: "GET",
@@ -155,50 +92,317 @@ function displayItinerary(data) {
   }
 }
 
-async function loadClimateData() {
-  const url = "https://real-time-climate-index.p.rapidapi.com/api/climate-data";
+// Function to fetch Airbnb listings based on city name and display them in a carousel
+async function searchListings() {
+  const city = document.getElementById("cityInput").value.trim();
+  const limit = 7; // Limit results to 7 listings for 7 slides
+
+  // Check if city name is provided
+  if (!city) {
+    alert("Please enter a city name.");
+    return;
+  }
+
+  const url = `https://airbnb13.p.rapidapi.com/search-geo?location=${encodeURIComponent(
+    city
+  )}&limit=${limit}&checkin=2025-01-12&checkout=2025-01-13&adults=1&children=0&infants=0&pets=0&page=1&currency=USD`;
   const options = {
     method: "GET",
     headers: {
       "x-rapidapi-key": "c99b257654msha5da4497e4531dap17feb3jsn4d01058b1959",
-      "x-rapidapi-host": "real-time-climate-index.p.rapidapi.com",
+      "x-rapidapi-host": "airbnb13.p.rapidapi.com",
     },
   };
 
   try {
     const response = await fetch(url, options);
-    const data = await response.json();
-    displayClimateData(data);
+    const data = await response.json(); // Parse response as JSON
+
+    // Clear previous listings and indicators in carousel
+    const carouselInner = document.getElementById("carousel-inner");
+    const carouselIndicators = document.getElementById("carousel-indicators");
+    carouselInner.innerHTML = "";
+    carouselIndicators.innerHTML = "";
+
+    // Process each listing and create carousel items
+    data.results.forEach((listing, index) => {
+      const carouselItem = document.createElement("div");
+      carouselItem.classList.add("carousel-item");
+      if (index === 0) {
+        carouselItem.classList.add("active");
+      }
+
+      const img = document.createElement("img");
+      img.src = listing.images[0];
+      img.classList.add("d-block", "w-100");
+      img.alt = `Slide ${index + 1}`;
+      carouselItem.appendChild(img);
+
+      const carouselCaption = document.createElement("div");
+      carouselCaption.classList.add("carousel-caption", "d-none", "d-md-block");
+      carouselItem.appendChild(carouselCaption);
+
+      const title = document.createElement("h5");
+      title.textContent = listing.name;
+      carouselCaption.appendChild(title);
+
+      const cityPara = document.createElement("p");
+      cityPara.textContent = `City: ${listing.city}`;
+      carouselCaption.appendChild(cityPara);
+
+      const typePara = document.createElement("p");
+      typePara.textContent = `Type: ${listing.type}`;
+      carouselCaption.appendChild(typePara);
+
+      const ratingPara = document.createElement("p");
+      ratingPara.textContent = `Rating: ${listing.rating}`;
+      carouselCaption.appendChild(ratingPara);
+
+      const pricePara = document.createElement("p");
+      pricePara.textContent = `Price: ${listing.price.currency} ${listing.price.total}`;
+      carouselCaption.appendChild(pricePara);
+
+      const link = document.createElement("a");
+      link.href = listing.url;
+      link.target = "_blank";
+      link.textContent = "View on Airbnb";
+      link.classList.add("btn", "btn-primary");
+      carouselCaption.appendChild(link);
+
+      carouselInner.appendChild(carouselItem);
+
+      // Create carousel indicators
+      const indicatorButton = document.createElement("button");
+      indicatorButton.setAttribute("type", "button");
+      indicatorButton.setAttribute(
+        "data-bs-target",
+        "#carouselExampleCaptions"
+      );
+      indicatorButton.setAttribute("data-bs-slide-to", index.toString());
+      if (index === 0) {
+        indicatorButton.classList.add("active");
+        indicatorButton.setAttribute("aria-current", "true");
+      }
+      indicatorButton.setAttribute("aria-label", `Slide ${index + 1}`);
+      carouselIndicators.appendChild(indicatorButton);
+    });
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching data:", error);
   }
 }
 
-function displayClimateData(data) {
-  const climateDataDiv = document.getElementById("climateData");
-  climateDataDiv.innerHTML = ""; // Clear previous data
+//Notes
+function saveNote(titleId, noteId) {
+  const title = document.getElementById(titleId).value;
+  const note = document.getElementById(noteId).value;
+  const blob = new Blob([`Title: ${title}\n\nNote: ${note}`], {
+    type: "text/plain;charset=utf-8",
+  });
+  saveAs(blob, `${title}.txt`);
+}
 
-  data.forEach((category) => {
-    category.forEach((entry) => {
-      const metadata = entry.metadata;
-      const data = entry.data;
+//currency converter
 
-      const entryDiv = document.createElement("div");
-      entryDiv.classList.add("entry");
+const BASE_URL =
+  "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies";
+const dropdowns = document.querySelectorAll(".dropdown select");
+const btn = document.querySelector("form button");
+const fromCurr = document.querySelector(".from select");
+const toCurr = document.querySelector(".to select");
+const msg = document.querySelector(".msg");
+const toggleThemeBtn = document.getElementById("toggle-theme");
 
-      const nameHeading = document.createElement("h2");
-      nameHeading.textContent = metadata.name;
-      entryDiv.appendChild(nameHeading);
+for (let select of dropdowns) {
+  for (let currCode in countryList) {
+    let newOption = document.createElement("option");
+    newOption.innerText = currCode;
+    newOption.value = currCode;
+    if (select.name === "from" && currCode === "USD") {
+      newOption.selected = "selected";
+    } else if (select.name === "to" && currCode === "INR") {
+      newOption.selected = "selected";
+    }
+    select.append(newOption);
+  }
 
-      const descriptionPara = document.createElement("p");
-      descriptionPara.textContent = metadata.fullDescription;
-      entryDiv.appendChild(descriptionPara);
+  select.addEventListener("change", (evt) => {
+    updateFlag(evt.target);
+  });
+}
 
-      const currentOutputPara = document.createElement("p");
-      currentOutputPara.textContent = `Current Output: ${data.outputs.current} ${data.outputs.unit}`;
-      entryDiv.appendChild(currentOutputPara);
+const updateExchangeRate = async () => {
+  let amount = document.querySelector(".amount input").value;
+  if (amount === "" || amount < 1) {
+    amount = 1;
+    document.querySelector(".amount input").value = "1";
+  }
+  const URL = `${BASE_URL}/${fromCurr.value.toLowerCase()}.json`;
+  let response = await fetch(URL);
+  let data = await response.json();
+  let rate = data[fromCurr.value.toLowerCase()][toCurr.value.toLowerCase()];
+  let finalAmount = amount * rate;
+  msg.innerText = `${amount} ${fromCurr.value} = ${finalAmount.toFixed(2)} ${
+    toCurr.value
+  }`;
+};
 
-      climateDataDiv.appendChild(entryDiv);
+const updateFlag = (element) => {
+  let currCode = element.value;
+  let countryCode = countryList[currCode];
+  let newSrc = `https://flagsapi.com/${countryCode}/flat/64.png`;
+  let img = element.parentElement.querySelector("img");
+  img.src = newSrc;
+};
+
+btn.addEventListener("click", (evt) => {
+  evt.preventDefault();
+  updateExchangeRate();
+});
+
+const toggleTheme = () => {
+  document.body.classList.toggle("dark-mode");
+  const isDarkMode = document.body.classList.contains("dark-mode");
+  localStorage.setItem("darkMode", isDarkMode);
+};
+
+const loadTheme = () => {
+  const isDarkMode = localStorage.getItem("darkMode") === "true";
+  if (isDarkMode) {
+    document.body.classList.add("dark-mode");
+  }
+};
+
+toggleThemeBtn.addEventListener("click", toggleTheme);
+
+window.addEventListener("load", () => {
+  loadTheme();
+  updateExchangeRate();
+});
+
+//translator
+async function translateText() {
+  const inputText = document.getElementById("inputText").value;
+  const fromLanguage = document.getElementById("fromLanguage").value;
+  const toLanguage = document.getElementById("toLanguage").value;
+
+  const url = `${endpointURL}?api-version=3.0&to=${toLanguage}&from=${fromLanguage}`;
+
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-rapidapi-key": "c99b257654msha5da4497e4531dap17feb3jsn4d01058b1959",
+      "x-rapidapi-host": "microsoft-translator-text.p.rapidapi.com",
+    },
+    body: JSON.stringify([{ Text: inputText }]),
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const data = await response.json();
+    const translatedText = data[0].translations[0].text;
+    document.getElementById(
+      "outputText"
+    ).innerHTML = `<strong>Translated:</strong><br>${translatedText}`;
+  } catch (error) {
+    console.error("Error translating text:", error);
+    document.getElementById("outputText").innerText =
+      "Translation failed. Please try again.";
+  }
+}
+
+//Expense Tracker
+function calculateExpenses() {
+  const budget = parseFloat(document.getElementById("totalBudget").value);
+  const transportation = parseFloat(
+    document.getElementById("expenseTransportation").value
+  );
+  const accommodation = parseFloat(
+    document.getElementById("expenseAccommodation").value
+  );
+  const activities = parseFloat(
+    document.getElementById("expenseActivities").value
+  );
+  const healthSafety = parseFloat(
+    document.getElementById("expenseHealthSafety").value
+  );
+  const miscellaneous = parseFloat(
+    document.getElementById("expenseMiscellaneous").value
+  );
+  const documentation = parseFloat(
+    document.getElementById("expenseDocumentation").value
+  );
+  const emergencyFund = parseFloat(
+    document.getElementById("expenseEmergencyFund").value
+  );
+  const medicalEmergency = parseFloat(
+    document.getElementById("expenseMedicalEmergency").value
+  );
+
+  const expenses = {
+    Transportation: transportation,
+    Accommodation: accommodation,
+    "Activities and Entertainment": activities,
+    "Health and Safety": healthSafety,
+    Miscellaneous: miscellaneous,
+    "Documentation and Fees": documentation,
+    "Emergency Fund": emergencyFund,
+    "Medical Emergencies": medicalEmergency,
+  };
+
+  const totalExpenses = Object.values(expenses).reduce((a, b) => a + b, 0);
+
+  if (totalExpenses > budget) {
+    let suggestions =
+      "Your total expenses exceed your budget. Consider reducing costs in these areas:<br>";
+    Object.keys(expenses).forEach((key) => {
+      suggestions += `${key}: ${expenses[key]}<br>`;
     });
+    document.getElementById("expenseSuggestions").innerHTML = suggestions;
+  } else {
+    document.getElementById("expenseSuggestions").innerHTML =
+      "Your total expenses are within the budget.";
+  }
+
+  document.getElementById("expenseResults").style.display = "block";
+  createChart(expenses);
+}
+
+function createChart(expenses) {
+  const ctx = document.getElementById("expenseChart").getContext("2d");
+  const expenseChart = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: Object.keys(expenses),
+      datasets: [
+        {
+          data: Object.values(expenses),
+          backgroundColor: [
+            "rgba(44, 62, 80, 0.8)",
+            "rgba(52, 73, 94, 0.8)",
+            "rgba(22, 160, 133, 0.8)",
+            "rgba(39, 174, 96, 0.8)",
+            "rgba(41, 128, 185, 0.8)",
+            "rgba(142, 68, 173, 0.8)",
+            "rgba(243, 156, 18, 0.8)",
+            "rgba(192, 57, 43, 0.8)",
+          ],
+          borderColor: [
+            "rgba(44, 62, 80, 1)",
+            "rgba(52, 73, 94, 1)",
+            "rgba(22, 160, 133, 1)",
+            "rgba(39, 174, 96, 1)",
+            "rgba(41, 128, 185, 1)",
+            "rgba(142, 68, 173, 1)",
+            "rgba(243, 156, 18, 1)",
+            "rgba(192, 57, 43, 1)",
+          ],
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+    },
   });
 }
