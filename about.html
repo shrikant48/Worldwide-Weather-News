@@ -1,98 +1,760 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Weather Wizard</title>
-    <style>
-        /* Body styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-        }
-
-        /* Section styles */
-        #about {
-            padding: 50px 0;
-            background-color: #fff;
-        }
-
-        /* Container styles */
-        .container {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        /* Heading styles */
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            color: #333;
-        }
-
-        /* Paragraph styles */
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-        }
-
-        /* Lead paragraph styles */
-        .lead {
-            font-size: 1.25rem;
-            font-weight: 500;
-        }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>TOUREASTA</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body>
+<body style="background-color: #CCE0F8;" class="p-3 m-0 border-0 bd-example m-0 border-0">
 
-    <section id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <h2>About Us</h2>
-                    <p class="lead">
-                        Welcome to Weather Wizard, your go-to source for the most accurate and up-to-date weather
-                        information. Our mission is to provide users with reliable weather forecasts, detailed
-                        meteorological data, and insights to help you plan your day, week, and beyond.
-                    </p>
-                    <p>
-                        At Weather Wizard, we understand that weather plays a crucial role in everyone's life. Whether
-                        you're planning a trip, organizing an event, or simply deciding what to wear, having access to
-                        precise weather information can make all the difference. That's why we've built a platform that
-                        delivers real-time weather updates, radar maps, and severe weather alerts.
-                    </p>
-                    <p>
-                        Our advanced algorithms and partnerships with leading meteorological organizations ensure that
-                        you receive the most accurate forecasts possible. We cover cities and towns worldwide, providing
-                        localized weather reports tailored to your specific location.
-                    </p>
-                    <p>
-                        But we're more than just numbers and forecasts. Weather Wizard is committed to helping our users
-                        stay safe and informed. Our user-friendly interface and intuitive design make it easy to access
-                        the information you need, when you need it. Plus, our blog and educational resources offer tips
-                        and insights on understanding weather patterns, preparing for extreme conditions, and making the
-                        most of each season.
-                    </p>
-                    <p>
-                        Join the Weather Wizard community today and stay ahead of the weather with confidence. Whether
-                        you're a weather enthusiast or just looking to stay prepared, we're here to help you navigate
-                        the elements.
-                    </p>
-                    <p><b><i>Note:</i></b><i> The information provided on this website is accessed from the Ninja
-                            Weather API. The API may not always give 100% accurate results.</i></p>
-                    <p><i>Sorry for the inconvenience, we try our best :)</i></p>
 
+
+    <!-- Nav -->
+    <nav style="background-color: #CCE0F8;" class="navbar navbar-expand-lg bg-body-tertiary">
+        <div style="background-color: #CCE0F8;" class="container-fluid" style="background-color: #CCE0F8;">
+            <a style="background-color: #CCE0F8;" class="navbar-brand"
+                href="https://climate.nasa.gov/earth-now/">🌍Globe
+                Cast |</a>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-list">
+                    <li class="nav-item">
+                        <a id="btn-color" class="nav-link active" aria-current="page" href="#"
+                            style="color: white;">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Scrollable modal -->
+                        <div class="modal fade" id="exampleModalToggle" aria-hidden="true"
+                            aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div id="btn-color-open" class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">About us</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <br>About Us<br><br>
+
+                                        Welcome to WeatherInfo!<br>
+                                        We are passionate about providing you with accurate and up-to-date weather
+                                        information from around the globe. Our mission is to make it easy for you to
+                                        access real-time weather data for any city, helping you plan your day, your
+                                        travels, or simply stay informed.<br><br>
+
+                                        What We Offer<br>
+
+                                        At WeatherInfo, we leverage the power of the WeatherAPI to fetch the latest
+                                        weather conditions for cities worldwide. Whether you're curious about the
+                                        temperature in New York City or the humidity in Tokyo, our user-friendly
+                                        interface allows you to quickly find the information you need. Our webpage is
+                                        designed to be responsive, ensuring a seamless experience across all
+                                        devices.<br><br>
+
+                                        Our Vision<br>
+
+                                        Our vision is to become your go-to source for reliable weather forecasts. We
+                                        strive to continuously improve our services, incorporating user feedback and the
+                                        latest technologies to enhance your experience. Whether you're a frequent
+                                        traveler, a weather enthusiast, or just someone planning their day, WeatherInfo
+                                        is here to help you stay informed and prepared.<br><br>
+
+                                        Get in Touch<br>
+
+                                        Have questions or suggestions? We'd love to hear from you!<br>
+                                        Feel free to reach out to our team via email or social media. Your feedback
+                                        helps us improve our services and ensures that WeatherInfo remains your trusted
+                                        weather companion.<br><br>
+
+                                        Thank you for choosing WeatherInfo. Let's stay connected, rain or shine!<br>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2"
+                                            data-bs-toggle="modal">User Guide</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="exampleModalToggle2" aria-hidden="true"
+                            aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div id="btn-color-open" class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">User Guide</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <br>User Guide <br><br>
+
+                                        Welcome to the WeatherInfo User Guide! This guide is designed to help you
+                                        navigate and make the most of our weather information webpage. Whether you're
+                                        new to the site or looking to explore its features, you'll find everything you
+                                        need to know below.<br><br><br>
+
+                                        Getting Started<br><br>
+
+                                        Input City Name: Start by entering the name of the city you want to check the
+                                        weather for in the search bar at the top of the page.
+                                        <br>
+                                        Retrieve Weather Data: Once you've entered a city name, click the "Search"
+                                        button or press Enter. WeatherInfo will fetch real-time weather data for that
+                                        city from the WeatherAPI.
+                                        <br><br>
+                                        Understanding Weather Information<br>
+                                        <br>
+                                        Weather Cards: The main display will show weather information in a structured
+                                        card format. Each card typically includes details such as temperature, humidity,
+                                        wind speed, and current weather conditions.
+                                        <br><br>
+                                        Icons and Symbols: Icons represent weather conditions (e.g., sun for clear
+                                        skies, clouds for overcast weather). Hover over these icons to see tooltips for
+                                        more details.
+                                        <br><br>
+                                        Additional Features
+                                        <br><br>
+                                        Responsive Design: WeatherInfo is designed to work seamlessly on desktops,
+                                        tablets, and mobile devices, ensuring you can access weather information on the
+                                        go.<br><br>
+
+                                        Error Handling: If you enter an invalid city name or encounter any issues, error
+                                        messages will guide you on how to resolve them.
+                                        <br><br>
+                                        Tips for Better Use
+                                        <br><br>
+                                        Bookmark Your Favorites: Save frequently checked cities by bookmarking the page
+                                        in your browser for quick access.
+                                        <br>
+                                        Explore More: Use the navigation or search feature to explore weather conditions
+                                        in different cities around the world.
+                                        <br><br><br>
+                                        Feedback and Support
+                                        <br><br>
+                                        We value your feedback! If you have suggestions, encounter issues, or simply
+                                        want to share your experience using WeatherInfo, please don't hesitate to
+                                        contact us. We're here to help and improve our services based on your input.
+                                        <br><br>
+                                        Thank You
+                                        <br><br>
+                                        Thank you for choosing WeatherInfo. We hope this guide helps you make the most
+                                        of our weather information webpage. Stay informed and prepared with WeatherInfo
+                                        wherever you go!
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle"
+                                            data-bs-toggle="modal">Back to About</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="btn-color" class="btn btn-primary" data-bs-target="#exampleModalToggle"
+                            data-bs-toggle="modal">About</button>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Button trigger modal -->
+                        <button id="btn-color" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                            User Guide
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div id="btn-color-open" class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">User Guide</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <br>User Guide <br><br>
+
+                                        Welcome to the WeatherInfo User Guide! This guide is designed to help you
+                                        navigate and make the most of our weather information webpage. Whether you're
+                                        new to the site or looking to explore its features, you'll find everything you
+                                        need to know below.<br><br><br>
+
+                                        Getting Started<br><br>
+
+                                        Input City Name: Start by entering the name of the city you want to check the
+                                        weather for in the search bar at the top of the page.
+                                        <br>
+                                        Retrieve Weather Data: Once you've entered a city name, click the "Search"
+                                        button or press Enter. WeatherInfo will fetch real-time weather data for that
+                                        city from the WeatherAPI.
+                                        <br><br>
+                                        Understanding Weather Information<br>
+                                        <br>
+                                        Weather Cards: The main display will show weather information in a structured
+                                        card format. Each card typically includes details such as temperature, humidity,
+                                        wind speed, and current weather conditions.
+                                        <br><br>
+                                        Icons and Symbols: Icons represent weather conditions (e.g., sun for clear
+                                        skies, clouds for overcast weather). Hover over these icons to see tooltips for
+                                        more details.
+                                        <br><br>
+                                        Additional Features
+                                        <br><br>
+                                        Responsive Design: WeatherInfo is designed to work seamlessly on desktops,
+                                        tablets, and mobile devices, ensuring you can access weather information on the
+                                        go.<br><br>
+
+                                        Error Handling: If you enter an invalid city name or encounter any issues, error
+                                        messages will guide you on how to resolve them.
+                                        <br><br>
+                                        Tips for Better Use
+                                        <br><br>
+                                        Bookmark Your Favorites: Save frequently checked cities by bookmarking the page
+                                        in your browser for quick access.
+                                        <br>
+                                        Explore More: Use the navigation or search feature to explore weather conditions
+                                        in different cities around the world.
+                                        <br><br><br>
+                                        Feedback and Support
+                                        <br><br>
+                                        We value your feedback! If you have suggestions, encounter issues, or simply
+                                        want to share your experience using WeatherInfo, please don't hesitate to
+                                        contact us. We're here to help and improve our services based on your input.
+                                        <br><br>
+                                        Thank You
+                                        <br><br>
+                                        Thank you for choosing WeatherInfo. We hope this guide helps you make the most
+                                        of our weather information webpage. Stay informed and prepared with WeatherInfo
+                                        wherever you go!
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <input class="d-flex search-input" role="search" type="text" id="cityInput"
+                    placeholder="Enter city name">
+                <button class="btn btn-outline-success round-button" id="searchBtn">🔍</button>
+            </div>
+
+        </div>
+    </nav>
+
+
+
+    <!--BackGroung Img-->
+    <div>
+        <header style="background-color: #CCE0F8;">
+            <img style="width: 1600px; height: auto;" src="TOURISTAS.PNG" alt="Tourista Logo">
+        </header>
+
+        <!-- Offcanvas 1 -->
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="currencyConverterOffcanvas"
+            aria-labelledby="currencyConverterOffcanvasLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="currencyConverterOffcanvasLabel">Currency Converter</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
+                    <div id="card-color" class="card-header">Currency Converter</div>
+                    <div class="card-body">
+                        <div class="content">
+                            <form>
+                                <div class="amount">
+                                    <h3>Enter Amount</h3>
+                                    <input style="background-color: #9fd3c7;" id="amount" value="1" type="text" />
+                                </div>
+                                <div class="dropdown">
+                                    <br>
+                                    <div class="from">
+                                        <b>From</b>
+                                        <div class="select-container">
+                                            <img id="fromFlag" src="https://flagsapi.com/US/flat/64.png" />
+                                            <select id="fromCurrency" name="from"></select>
+                                        </div>
+                                    </div>
+                                    <div class="to">
+                                        <b>To</b>
+                                        <div class="select-container">
+                                            <img id="toFlag" src="https://flagsapi.com/IN/flat/64.png" />
+                                            <select id="toCurrency" name="to"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div style="background-color: #024554" class="msg" id="conversionRate">1 USD = 83 INR
+                                </div>
+                                <br>
+                                <button style="background-color: #166678; color: white;" type="button"
+                                    id="convertBtn">Get
+                                    Exchange Rate</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
 
+        <!-- Button for Offcanvas 1 -->
+        <button style="background-color: #07588a;" class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#currencyConverterOffcanvas" aria-controls="currencyConverterOffcanvas">>> Currency
+            Converter</button>
+        <script src="countryCodes.js"></script>
+    </div>
+
+
+
+    <!-- <h1>Weather App</h1> -->
+    <div class="container">
+        <br>
+        <h1>Weather for <span id="locationName"> </span><img id="currentConditionIcon"></h1>
+
+        <br>
+
+        <table>
+            <tr>
+                <th>
+                    <h2>Location</h2>
+                </th>
+                <th>
+                    <h2>Temprature</h2>
+                </th>
+                <th>
+                    <h2>Cloud Condition</h2>
+                </th>
+
+            </tr>
+            <tr>
+                <td>
+                    <p>Country: <span id="locationCountry"></span></p>
+                    </p>
+                </td>
+                <td>
+                    <p>Temperature : <span id="currentTempC"></span>°C | : <span id="currentTempF"></span>°F</p>
+                </td>
+
+                <td>
+                    <p>Condition: <span id="currentCondition"></span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Region: <span id="locationRegion"></span></p>
+                </td>
+                <td>
+                    <p>Feels Like : <span id="currentFeelsLikeC"></span>°C / : <span id="currentFeelsLikeF"></span>°F
+                    </p>
+                </td>
+                <td>
+                    <p>Cloud: <span id="currentCloud"></span></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Latitude: <span id="locationLat"></span></p>
+                </td>
+                <td>
+                    <p>Humidity: <span id="currentHumidity"></span></p>
+                </td>
+                <td>
+                    <p>Pressure : <span id="currentPressureMb"></span>mb</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Longitude: <span id="locationLon"></span></p>
+                </td>
+                <td>
+                    <p>Wind : <span id="currentWindMph"></span>mph / : <span id="currentWindKph"></span>kmph</p>
+                </td>
+                <td>
+                    <p>Precipitation : <span id="currentPrecipMm"></span>mm</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Timezone: <span id="locationTz"></span></p>
+                </td>
+                <td>
+                    <p>Wind Direction: <span id="currentWindDir"></span></p>
+                </td>
+                <td>
+                    <p>Visibility : <span id="currentVisKm"></span>km</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Local Time: <span id="locationLocaltime"></span></p>
+                </td>
+                <td>
+                    <p>UV Index: <span id="currentUv"></span></p>
+                </td>
+                <td>
+                    <p>Last Updated: <span id="currentLastUpdated"></span></p>
+                </td>
+            </tr>
+
+        </table>
+        <main>
+            <br><br>
+
+    </div>
+
+    <!-- End Weather Code -->
+    <hr>
+    <br>
+    <!-- <h1>Side Bar </h1> -->
+    <button style="background-color: #07588a;" class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"> >>
+        Keep Notes🗒</button>
+    <br>
+
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+        aria-labelledby="offcanvasWithBothOptionsLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Keep your Points here</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+
+        <!--Notes-->
+        <!--Card 1-->
+        <div class="card text-bg-secondary mb-3 note-card">
+            <div id="card-color" class="card-header">Page No. 1</div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    <textarea style="background-color: #bbe4e9; " id="title1" placeholder="Title..." rows="2"
+                        cols="24"></textarea>
+                </h5>
+                <p class="card-text">
+                    <textarea style="background-color: #bbe4e9; " id="note1" placeholder="Note..." rows="4"
+                        cols="30"></textarea>
+                </p>
+                <button id="btn-color" class="btn btn-primary" onclick="saveNote('title1', 'note1')">Save
+                    Note</button>
+            </div>
+        </div>
+        <!--Card 2-->
+        <div class="card text-bg-success mb-3 note-card">
+            <div id="card-color" class="card-header">Page No. 2</div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    <textarea style="background-color: #bbe4e9; " id="title2" placeholder="Title..." rows="2"
+                        cols="24"></textarea>
+                </h5>
+                <p class="card-text">
+                    <textarea style="background-color: #bbe4e9; " id="note2" placeholder="Note..." rows="4"
+                        cols="30"></textarea>
+                </p>
+                <button id="btn-color" class="btn btn-primary" onclick="saveNote('title2', 'note2')">Save
+                    Note</button>
+            </div>
+        </div>
+
+        <div class="offcanvas-body">
+            <p><i>Click <b style="background-color: #007bff; color: #fff;">"Save Note"</b> to save your Key Points
+                    in
+                    downloads.</i></p>
+
+        </div>
+    </div>
+    <br>
+
+
+    <!--Vaccation card-->
+    <br>
+    <div class="container">
+        <h1>Vacation Planner</h1>
+        <i>It is an AI based vacation planner so it might take few seconds...</i>
+        <br>
+        <br>
+        <button
+            style="padding: 10px 20px; font-size: 20px; border: none; border-radius: 5px; background-color: #007bff; color: #fff; cursor: pointer; transition: background-color 0.3s ease;"
+            onclick="planVacation()">🍹Plan Vacation</button>
+        <br><br>
+        <h3><i>"Take only memories, leave only footprints." - Chief Seattle</i></h3>
+        <br>
+        <br>
+        <div id="result"> </div>
+    </div>
+
+    <br>
+    <hr>
+    <br>
+    <br>
+
+
+    <!--Expense tracker-->
+    <button style="background-color: #07588a;" class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasExpenseTracker" aria-controls="offcanvasExpenseTracker">
+        >> Expense Tracker
+    </button>
+
+    <div style="background-color: #9fd3c7;" class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1"
+        id="offcanvasExpenseTracker" aria-labelledby="offcanvasExpenseTrackerLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExpenseTrackerLabel">Expense Tracker</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <form id="expenseTrackerForm">
+                <label for="totalBudget">Total Budget:</label>
+                <input style="background-color: #7db9b3; " type="number" id="totalBudget" required
+                    class="form-control"><br>
+
+                <label for="expenseTransportation">Transportation:</label>
+                <input style="background-color: #7db9b3; " type="number" id="expenseTransportation" required
+                    class="form-control"><br>
+
+                <label for="expenseAccommodation">Accommodation:</label>
+                <input style="background-color: #7db9b3; " type="number" id="expenseAccommodation" required
+                    class="form-control"><br>
+
+                <label for="expenseActivities">Activities and Entertainment:</label>
+                <input style="background-color: #7db9b3; " type="number" id="expenseActivities" required
+                    class="form-control"><br>
+
+                <label for="expenseHealthSafety">Health and Safety:</label>
+                <input style="background-color: #7db9b3; " type="number" id="expenseHealthSafety" required
+                    class="form-control"><br>
+
+                <label for="expenseMiscellaneous">Miscellaneous:</label>
+                <input style="background-color: #7db9b3; " type="number" id="expenseMiscellaneous" required
+                    class="form-control"><br>
+
+                <label for="expenseDocumentation">Documentation and Fees:</label>
+                <input style="background-color: #7db9b3; " type="number" id="expenseDocumentation" required
+                    class="form-control"><br>
+
+                <label for="expenseEmergencyFund">Emergency Fund:</label>
+                <input style="background-color: #7db9b3; " type="number" id="expenseEmergencyFund" required
+                    class="form-control"><br>
+
+                <label for="expenseMedicalEmergency">Medical Emergencies:</label>
+                <input style="background-color: #7db9b3; " type="number" id="expenseMedicalEmergency" required
+                    class="form-control"><br>
+
+                <button type="button" class="btn btn-primary mt-3" onclick="calculateExpenses()">Submit</button>
+            </form>
+
+            <div id="expenseResults">
+                <h2>Results</h2>
+                <canvas id="expenseChart"></canvas>
+                <p id="expenseSuggestions"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <br>
+    <br>
+    <br>
+
+
+    <!--Hotels-->
+    <div id="search-form" class="container mt-4">
+        <button
+            style="padding: 10px 20px; font-size: 20px; border: none; border-radius: 5px; background-color: #007bff; color: #fff; cursor: pointer; transition: background-color 0.3s ease;"
+            onclick="searchListings()">Search Hotels nearby...</button>
+    </div>
+
+    <div id="carouselExampleCaptions" class="carousel slide mt-4" data-ride="carousel">
+        <div class="carousel-indicators" id="carousel-indicators">
+            <!-- Carousel indicators will be dynamically added here -->
+        </div>
+        <div class="carousel-inner" id="carousel-inner">
+            <!-- Listings will be dynamically added here -->
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+
+
+    <!--Langusge Translator -->
+    <br>
+    <hr>
+    <br>
+    <br>
+    <div class="translator-container">
+        <h1 class="translator-header"> Language Translator</h1>
+
+        <textarea id="inputText" class="translator-textarea" placeholder="Enter text to translate"></textarea>
+
+        <select id="fromLanguage" class="translator-select">
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="it">Italian</option>
+            <option value="ja">Japanese</option>
+            <option value="ar">Arabic</option>
+            <option value="zh-Hans">Chinese Simplified</option>
+            <option value="zh-Hant">Chinese Traditional</option>
+            <option value="ko">Korean</option>
+            <option value="ru">Russian</option>
+            <option value="pt">Portuguese</option>
+            <option value="nl">Dutch</option>
+            <option value="tr">Turkish</option>
+            <option value="vi">Vietnamese</option>
+            <option value="th">Thai</option>
+            <option value="sv">Swedish</option>
+            <option value="pl">Polish</option>
+            <option value="no">Norwegian</option>
+            <option value="id">Indonesian</option>
+            <option value="hi">Hindi</option>
+            <option value="fi">Finnish</option>
+            <option value="el">Greek</option>
+            <option value="da">Danish</option>
+            <option value="cs">Czech</option>
+            <option value="bg">Bulgarian</option>
+            <option value="uk">Ukrainian</option>
+            <option value="ro">Romanian</option>
+            <option value="ms">Malay</option>
+            <option value="hu">Hungarian</option>
+            <option value="he">Hebrew</option>
+            <option value="fa">Persian</option>
+            <option value="eu">Basque</option>
+            <option value="ca">Catalan</option>
+            <option value="hr">Croatian</option>
+            <option value="sr">Serbian</option>
+            <option value="sk">Slovak</option>
+            <option value="sl">Slovenian</option>
+            <option value="et">Estonian</option>
+        </select>
+
+        <select id="toLanguage" class="translator-select">
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="it">Italian</option>
+            <option value="ja">Japanese</option>
+            <option value="ar">Arabic</option>
+            <option value="zh-Hans">Chinese Simplified</option>
+            <option value="zh-Hant">Chinese Traditional</option>
+            <option value="ko">Korean</option>
+            <option value="ru">Russian</option>
+            <option value="pt">Portuguese</option>
+            <option value="nl">Dutch</option>
+            <option value="tr">Turkish</option>
+            <option value="vi">Vietnamese</option>
+            <option value="th">Thai</option>
+            <option value="sv">Swedish</option>
+            <option value="pl">Polish</option>
+            <option value="no">Norwegian</option>
+            <option value="id">Indonesian</option>
+            <option value="hi">Hindi</option>
+            <option value="fi">Finnish</option>
+            <option value="el">Greek</option>
+            <option value="da">Danish</option>
+            <option value="cs">Czech</option>
+            <option value="bg">Bulgarian</option>
+            <option value="uk">Ukrainian</option>
+            <option value="ro">Romanian</option>
+            <option value="ms">Malay</option>
+            <option value="hu">Hungarian</option>
+            <option value="he">Hebrew</option>
+            <option value="fa">Persian</option>
+            <option value="eu">Basque</option>
+            <option value="ca">Catalan</option>
+            <option value="hr">Croatian</option>
+            <option value="sr">Serbian</option>
+            <option value="sk">Slovak</option>
+            <option value="sl">Slovenian</option>
+            <option value="et">Estonian</option>
+        </select>
+
+        <button onclick="translateText()" class="translator-button">Translate</button>
+
+        <div id="outputText" class="translator-output"></div>
+    </div>
+    <br>
+    <br>
+    <br>
+
+
+    <!--footer-->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section about">
+                <h2>About Us</h2>
+                <p>Welcome to WeatherInfo!
+                    We are passionate about providing you with accurate and up-to-date weather information from around
+                    the globe. Our mission is to make it easy for you to access real-time weather data for any city,
+                    helping you plan your day, your travels, or simply stay informed.</p>
+            </div>
+            <div class="footer-section links">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#destinations">Destinations</a></li>
+                    <li><a href="#deals">Deals</a></li>
+                    <li><a href="shreed2002@gmail.com">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section feedback">
+                <h2>Feedback</h2>
+                <form action="https://formspree.io/f/xeojoeog" id="feedback-form" method="post">
+                    <label for="name">Name:</label>
+                    <input style="background-color: #bbe4e9;" type="text" id="name" name="name" required><br>
+                    <label for="email">Email:</label>
+                    <input style="background-color: #bbe4e9;" type="email" id="email" name="email" required><br>
+                    <label for="message">Message:</label>
+                    <textarea style="background-color: #bbe4e9;" id="message" name="message" rows="2"
+                        required></textarea><br>
+                    <button style="color: white;" type="submit">Submit</button>
+                </form>
+            </div>
+            <div class="footer-section social">
+                <h2>Connect Us</h2>
+                <a href="https://www.linkedin.com/in/deshmukhshrikant"><img
+                        src="https://img.icons8.com/?size=100&id=xuvGCOXi8Wyg&format=png&color=000000"
+                        alt="Linkedin"></a>
+                <a href="https://x.com/SHRID48"><img
+                        src="https://img.icons8.com/?size=100&id=phOKFKYpe00C&format=png&color=000000"
+                        alt="Twitter"></a>
+                <br>
+                <a href=""><img src="https://img.icons8.com/?size=100&id=13912&format=png&color=000000"
+                        alt="Facebook"></a>
+                <a href="https://www.instagram.com/deshmukhsofficial/"><img
+                        src="https://img.icons8.com/?size=100&id=ZRiAFreol5mE&format=png&color=000000"
+                        alt="Instagram"></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 TOUREASTA. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="endpoints.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
