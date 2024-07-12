@@ -1,0 +1,422 @@
+/* styles.css */
+
+#carouselExampleCaptions {
+    padding-left: 4cm;
+    padding-right: 4.5cm;
+}
+
+
+table {
+    font-size: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th,
+td {
+    padding: 8px;
+    border: 2px solid #e1f6f4;
+}
+
+th {
+    background-color: #07588a;
+
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #bae8e8;
+    /* Light grey background for even rows */
+}
+
+tr:nth-child(odd) {
+    background-color: #e3f6f5;
+    /* White background for odd rows */
+}
+
+tr:hover {
+    background-color: #53a8b6;
+    /* Light grey background on hover */
+}
+
+
+.note-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.note-card {
+    min-width: 18rem;
+    margin: 1rem;
+}
+
+textarea {
+    resize: none;
+}
+
+
+/* General styles for the input box */
+.search-input {
+    background-color: #eaf6f6;
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+/* Focus state for the input box */
+.search-input:focus {
+    border-color: #66afe9;
+    box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+/* Styles for the round button */
+.round-button {
+    background-color: #4580d3;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover and focus state for the round button */
+.round-button:hover,
+.round-button:focus {
+    background-color: #4580d3;
+    outline: none;
+}
+
+
+
+/* Header */
+/* General styles for the navigation list */
+.nav-list {
+    display: flex;
+    align-items: center;
+}
+
+.nav-item {
+    margin-right: 15px;
+}
+
+.nav-link {
+    color: #333;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 10px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Hover effect for the nav links */
+.nav-link:hover {
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 5px;
+}
+
+/* Active state for the nav link */
+.nav-link.active {
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 5px;
+}
+
+/* General styles for the input box */
+.search-input {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+/* Focus state for the input box */
+.search-input:focus {
+    border-color: #66afe9;
+    box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+/* Styles for the round button */
+.round-button {
+    background-color: #4580d3;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover and focus state for the round button */
+.round-button:hover,
+.round-button:focus {
+    background-color: #4580d3;
+    outline: none;
+}
+
+
+
+/* Translator*/
+.translator-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #79c2d0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.translator-header {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.translator-textarea {
+    background-color: #dff1f7;
+    width: 100%;
+    height: 100px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.translator-select,
+.translator-button {
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #53a8b6;
+    border-radius: 4px;
+    background-color: #53a8b6;
+    color: #fff;
+    cursor: pointer;
+}
+
+.translator-select:hover,
+.translator-button:hover {
+    background-color: #0056b3;
+}
+
+.translator-button {
+    margin-left: 10px;
+}
+
+.translator-output {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #dff1f7;
+    min-height: 50px;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+header {
+    background-color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.logo {
+    font-size: 4em;
+    color: #0b7edb;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin: 0;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(2, 84, 216, 0.3);
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    /* Scale up on hover */
+}
+
+.offcanvas-header {
+    background-color: #79c2d0;
+}
+
+#offcanvasWithBothOptions {
+    background-color: #bbe4e9;
+}
+
+#currencyConverterOffcanvas {
+    background-color: #bbe4e9;
+}
+
+#card-color {
+    background-color: #166678;
+}
+
+.card-body {
+    background-color: #7db9b3;
+}
+
+#btn-color {
+    background-color: #5585b5;
+}
+
+#btn-color-open {
+    background-color: #9fd3c7;
+}
+
+
+/* Footer */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+footer {
+    background-color: #166678;
+    color: #fff;
+    padding: 40px 0;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0 20px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    margin: 10px 20px;
+}
+
+.footer-section h2 {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.footer-section p,
+.footer-section ul,
+.footer-section form {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #142d4c;
+}
+
+.footer-section form input,
+.footer-section form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.footer-section form button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #142d4c;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.footer-section form button:hover {
+    background-color: #166678;
+}
+
+.footer-section .social a {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.footer-section .social a img {
+    width: 32px;
+    height: 32px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #444;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/*Expense Tracker*/
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: inline-block;
+    width: 200px;
+    margin-top: 10px;
+}
+
+input {
+    width: 100%;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+}
+
+#expenseResults {
+    display: none;
+    margin-top: 20px;
+}
